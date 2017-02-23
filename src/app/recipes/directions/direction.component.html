@@ -1,0 +1,21 @@
+<!-- <label>Directions: </label> -->
+<div>
+	<ul class="directions">
+		<li *ngFor="let direction of recipe.directions">
+			<span class="badge">{{direction.order}}</span>
+			<span class="text" *ngIf="!isEditMode(direction)">{{direction.description}}</span>
+			<span class="text" *ngIf="isEditMode(direction)">
+				<textarea  [(ngModel)]="direction.description" 
+					(keyup.enter)="save()" placeholder="Direction description"></textarea>
+			</span>
+
+			<button class="option" (click)="delete(direction); $event.stopPropagation();"
+				*ngIf="isDeleteButtonEnabled(direction)">x</button>
+			<button class="option" (click)="save(); $event.stopPropagation();"
+				*ngIf="isSaveButtonEnabled(direction)">Save</button>
+			<button class="option" (click)="edit(direction.order); $event.stopPropagation();"
+				*ngIf="isEditButtonEnabled()">Edit</button>
+		</li>
+	</ul>
+	<button class="add" (click)="add(); $event.stopPropagation();" *ngIf="isAddButtonEnabled()">Add</button>
+</div>

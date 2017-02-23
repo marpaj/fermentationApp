@@ -1,0 +1,47 @@
+.encapsulate {
+	border: 1px solid #607D8B;
+	border-radius: 4px 4px 4px 4px;
+	padding: .5em;
+}
+label {
+	display: inline-block;
+	color: #607D8B;
+	font-weight: bold;
+	padding: .4em;
+	/* border: 1px solid #607D8B; */
+}
+.text {
+	padding: .4em;
+}
+textarea {
+	display: block;
+	width: 20em;
+	height: 5em;
+	font-size: 1em;
+	padding-left: .4em;
+	margin-bottom: .7em;
+	margin-left: 1em;
+}
+.listing {
+	margin: 0 0 .5em 1em;
+	list-style-type: none;
+	padding: 0;
+}
+.listing li {
+	position: relative;
+	padding: .4em;
+	left: 0;
+	margin-bottom: .4em;
+	padding: .4em;
+	background-color: #EEE;
+	border-radius: 4px;
+}
+.listing .badge {
+	display: inline-block;
+	color: white;
+	padding: .4em;
+	background-color: #607D8B;
+	line-height: 1em;
+	position: relative;
+	border-radius: 4px 4px 4px 4px;
+}

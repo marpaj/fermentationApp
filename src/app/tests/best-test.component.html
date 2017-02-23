@@ -1,0 +1,37 @@
+<div class="encapsulate">
+	<label>Vote:</label><span class="text">{{test.vote}}</span>
+	<label>Time:</label><span class="text">{{'0'}}</span>
+	<div>
+		<label>Description: </label>
+		<textarea row="4" columns="6" 
+			[(ngModel)]="test.description" 
+			placeholder="description"
+			disabled="True">
+		</textarea>
+	</div>
+	<div>
+		<label>Ingredients: </label>
+		<ul class="listing">
+			<li *ngFor="let iTested of test.ingredientsTested">
+				<span class="badge">
+				{{iTested.amount +' '+ iTested.units}}
+				</span>				
+				{{iTested.ingredient.name}}
+			</li>
+		</ul>
+	</div>
+	<div>
+		<label>Directions: </label>
+		<ul class="listing">
+			<li *ngFor="let dTested of test.directionsTested">
+				<span class="badge" *ngIf="dTested.time && !dTested.place">
+					{{' [For '+ dTested.time +']'}}
+				</span>
+				<span class="badge" *ngIf="dTested.time && dTested.place">
+					{{' [For '+ dTested.time +' and put in '+ dTested.place +']'}}
+				</span>
+				{{dTested.direction.description}} 
+			</li>
+		</ul>
+	</div>
+</div>

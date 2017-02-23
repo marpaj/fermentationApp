@@ -1,0 +1,48 @@
+<div *ngIf="recipe">
+	<h2>{{recipe.name}} details!</h2>
+	<div *ngIf="errorMessages.length>0">
+		<ul>
+			<li *ngFor="let error of errorMessages">
+				<span>{{error}}</span>
+			</li>
+		</ul>
+	</div>
+	
+	<div>
+		<label>Name: </label>
+		<input [(ngModel)]="recipe.name" disabled="{{status=='reading'}}" placeholder="name" />
+	</div>
+	<div class="textarea_in_middle">
+		<label>Description: </label>
+		<textarea [(ngModel)]="recipe.description" 
+			disabled="{{status=='reading'}}"
+			placeholder="description">
+		</textarea>
+	</div>
+	<div *ngIf="test && test.closed && status=='reading'">
+		<label>Best test: </label>
+		<div class="component">
+			<best-test [test]="test" [status]="status"></best-test>
+		</div>
+	</div>	
+	<div *ngIf="!test || !test.closed || status!='reading'">
+		<label>Ingredients:</label>
+		<div class="component">
+			<ingredient-recipe [recipe]="recipe" [status]="status"></ingredient-recipe>
+		</div>
+		<label>Directions:</label>
+		<div class="component">
+			<direction-recipe [recipe]="recipe" [status]="status"></direction-recipe>
+		</div>
+	</div>
+	
+	<button (click)="goBack()">Back</button>
+	<button (click)="edit()" *ngIf="isEditButtonEnabled()" disabled="{{activeTest}}">Edit</button>
+	<button (click)="cancel()" *ngIf="isCancelButtonEnabled()">Cancel</button>
+	<button (click)="save()" *ngIf="isSaveButtonEnabled()">Save</button>
+	<button [routerLink]="['/test', {idRecipe: recipe.id}]" *ngIf="isNewTestButtonEnabled()">New Test</button>
+	<button [routerLink]="['/tests', recipe.id]" *ngIf="isTestsButtonEnabled()">Tests</button>
+	<button [routerLink]="['/test', {idTest: activeTest.id}]" *ngIf="isActiveTestButtonEnabled()" class="active">
+		Active Test
+	</button>
+</div>

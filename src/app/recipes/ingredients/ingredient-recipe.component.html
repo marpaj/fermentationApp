@@ -1,0 +1,21 @@
+<div>
+	<div *ngIf="status!='reading'" class="add-ingredient">
+		<select #selection id="select" name="selection">
+			<option></option>
+			<option *ngFor="let ingredient of ingredients" 
+				[value]="ingredient.id">{{ingredient.name}}</option>
+		</select>
+		<button 
+			(click)="addIngredient(selection.value); selection.value=''">Add
+		</button>
+	</div>
+	<ul class="ingredients">
+		<li *ngFor="let ingredient of recipe.ingredients">
+			<span>{{ingredient.name}}</span>
+			<button class="delete"
+				(click)="delete(ingredient); $event.stopPropagation()"
+				*ngIf="status!='reading'">x
+			</button>
+		</li>
+	</ul>
+</div>

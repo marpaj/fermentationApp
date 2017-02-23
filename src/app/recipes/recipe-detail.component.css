@@ -1,0 +1,14 @@
+textarea {
+	margin: 0 0 .5em 2em;
+}
+.active {
+	color: #B22222;
+}
+.component {
+	margin-left: 2em;
+}
+.encapsulate {
+	border: 1px solid #607D8B;
+	border-radius: 4px 4px 4px 4px;
+	padding: .5em;
+}

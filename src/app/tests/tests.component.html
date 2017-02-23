@@ -1,0 +1,10 @@
+<h2>My Tests</h2>
+<div class="tests">
+	<a *ngFor="let test of tests" [routerLink]="['/test', {idTest: test.id}]">
+		Voting value {{test.vote}} [ {{ test.date | date:'MMM d, y, HH:mm:ss' }} ]
+		<span class="active" *ngIf="!test.closed">Active</span>
+	</a>
+</div>
+<div>
+	<button (click)="goBack()">Back</button>
+</div>

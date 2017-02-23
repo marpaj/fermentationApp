@@ -1,0 +1,74 @@
+<div *ngIf="test">
+	<h2>Recipe Testing</h2>
+	<div *ngIf="errorMessages">
+		<ul>
+			<li *ngFor="let message of errorMessages">
+				<span>{{message}}</span>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<label>Vote: </label>
+		<input [(ngModel)]="test.vote" placeholder="vote" />
+	</div>
+	<div class="textarea_in_middle">
+		<label>Description: </label>
+		<textarea row="4" columns="6" [(ngModel)]="test.description" placeholder="description">
+		</textarea>
+	</div>
+	<div>
+		<label>Ingredients: </label>
+		<ul class="ingredients">
+			<li *ngFor="let ingrTested of test.ingredientsTested">
+				<span class="badge">
+					{{ingrTested.ingredient.name}}
+					<input [(ngModel)]="ingrTested.amount" placeholder="amount" required/>
+					and units
+					<input [(ngModel)]="ingrTested.units" placeholder="units" required/>
+				</span>
+			</li>
+		</ul>
+	</div>
+	<div>
+		<label>Directions: </label>
+		<ul class="directions">
+			<li *ngFor="let direcTested of test.directionsTested" 
+					[class.current]="isCurrentDirection(direcTested)">
+					
+					<span class="badge">{{direcTested.direction.order}}</span>
+					<span class="text">{{direcTested.direction.description}}</span>
+
+					<!--<div *ngIf="test.directionsTested.indexOf(direcTested)+1 == currentDirection">-->
+					<div *ngIf="isCurrentDirection(direcTested)">
+						<select #parameterSelect id="select" name="selection">
+							<option value="" disabled selected>Parameter</option>
+							<option *ngFor="let parameter of parameters" 
+								[value]="parameter.id">{{parameter.name}}</option>
+						</select>
+						<input #parameterValue placeholder="value" />
+						<button (click)="addParameterTested(direcTested, 
+							parameterSelect.value, parameterValue.value); parameterSelect.value=''; parameterValue.value=''">Add</button>
+					</div>
+					<ul class="parameters">
+						<li *ngFor="let parameterTested of direcTested.parametersTested"
+								[class.current]="isCurrentDirection(directested)">
+								<!--[class.current]="direcTested.id === test.directionsTested[currentDirection-1]">-->
+							<span>{{parameterTested.parameter.name +': '}}</span>{{parameterTested.value}}
+							<button class="delete" (click)="deleteParameterTested(direcTested, parameterTested); 
+								$event.stopPropagation()">x</button>
+						</li>
+					</ul>
+					<!--<div *ngIf="test.directionsTested.indexOf(direcTested)+1 == currentDirection">-->
+					<div *ngIf="isCurrentDirection(direcTested)">
+						<button *ngIf="currentDirection > 1" (click)="goBackDirection()">Back</button>
+						<button *ngIf="test.directionsTested.length > currentDirection" (click)="goNextDirection()">Next</button>
+					</div>
+				<!-- </div> -->
+			</li>
+		</ul>
+	</div>
+	<button (click)="goBack()">Back</button>
+	<button (click)="save()">Save</button>
+	<button (click)="delete()" *ngIf="test.id">Delete</button>
+	<button (click)="close()" *ngIf="test.id && !test.closed" class="close">Close</button>
+</div>

@@ -1,0 +1,35 @@
+.add-ingredient {
+	margin: 0 0 .6em 0;
+	padding: 0;
+}
+.add-ingredient select {
+	width: 15em;
+	height: 2em;
+	font-size: .8em;
+	padding-left: .4em;
+	margin: 0;
+}
+.add-ingredient button {
+	margin: 0 0 0 .5em;
+}
+.ingredients {
+	list-style-type: none;
+	padding: 0;
+	width: 15em;
+	margin: 0;
+}
+.ingredients li {
+    background-color: #607D8B;
+    margin-bottom: .5em;
+    padding: .6em 0 .6em .4em;
+    border-radius: 4px;
+	color: white;
+}
+button.delete {
+	float:right;
+	margin-top: -.3em;
+	margin-right: .7em;
+	background-color: gray !important;
+	color:white;
+	border: 1px solid white;
+}

@@ -1,0 +1,60 @@
+.add-direction {
+	margin: 0;
+	padding: 0;
+}
+.add-direction textarea {
+	display: inline-block;
+	width: 20em;
+	height: 3em;
+	font-size: 1em;
+	padding-left: .4em;
+	resize: none;
+	margin: 0;
+}
+.add-direction button {
+	position: relative;
+	top: -.6em;
+	margin: 0;
+}
+.directions {
+	margin: 0 0 1em 0;
+	list-style-type: none;
+	padding: 0;
+	width: 35em;
+}
+.directions li {
+	position: relative;
+	left: 0;
+	background-color: #EEE;
+	margin: .5em 0;
+	padding: .3em .4em .3em .4em;
+	border-radius: 4px;
+}
+.directions .badge {
+	display: inline-block;
+	position: relative;
+	background-color: #607D8B;
+	border-radius: 4px;
+	color: white;
+	padding: .5em;
+	vertical-align: top;
+}
+.directions .text {
+	position: relative;
+	display: inline-block;
+	width: 24em;
+	margin: .5em;
+}
+button.option {
+	float:right;
+	margin-top: .4em;
+	margin-right: .4em;
+	background-color: gray !important;
+	color:white;
+}
+button.add {
+	/*margin-top: -2em;*/
+	margin-left: .4em;
+	background-color: gray !important;
+	color:white;
+}
