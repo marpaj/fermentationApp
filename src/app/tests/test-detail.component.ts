@@ -24,12 +24,8 @@ export class TestDetailComponent implements OnInit {
 	test: Test;
 	
 	idRecipe: number;
-	
-	// parameters: Parameter[];
 
 	errorMessages: string[];
-
-	// currentDirection: number;
 
 	constructor(
 		private testService: TestService,
@@ -40,8 +36,6 @@ export class TestDetailComponent implements OnInit {
 	) {}
 
 	ngOnInit(): void {
-		// Initialize current direction Tested to 1
-		// this.currentDirection = 1;
 
 		this.errorMessages = [];
 
@@ -79,33 +73,11 @@ export class TestDetailComponent implements OnInit {
 					}
 				});
 
-			// // Initialize parameter list on directions tested selection
-			// this.initializeParameters(null);
-
 		// When there is not idRecipe, there will be a idTest
 		} else {
 			this.testService.getTest(idTest).then(test => this.test = test);
-			// this.testService.getCurrentDirection(idTest).then(currentDt => {
-			// 	this.currentDirection = currentDt.direction.order;
-				
-			// 	this.initializeParameters(currentDt);
-			// });
 		}
 	}
-
-	// // Initialize parameter select for the current direction tested
-	// private initializeParameters(directionTested: DirectionTested): void {
-	// 	this.testService.getParameters().then(parameters => {
-	// 		this.parameters = parameters;
-
-	// 		// Filtering parameter select to display only parameters no added
-	// 		if (directionTested) {
-	// 			for (let parameterTested of directionTested.parametersTested) {
-	// 				this.parameters = this.parameters.filter(i => i.id !== parameterTested.parameter.id);
-	// 			}
-	// 		}
-	// 	});
-	// }
 
 	// Go back to the last page
 	goBack(): void {
@@ -162,60 +134,6 @@ export class TestDetailComponent implements OnInit {
 	delete(): void {
 		this.testService.delete(this.test.id).then(() => this.goBack());
 	}
-	
-	// // Add a parameterTested to the direction tested and initialize the parameter select
-	// addParameterTested(directionTested: DirectionTested, idParameter: number, value: string): void {
-	// 	if (!idParameter) { return; }
-		
-	// 	// Get the parameter selected (Filter method return an array)
-	// 	let parameters = <Parameter[]>this.parameters.filter(i => i.id == idParameter);
-		
-	// 	// Add new parameter tested to the current direction tested
-	// 	let parameterTested = new ParameterTested(parameters[0], value);
-	// 	directionTested.parametersTested.push(parameterTested);
-				
-	// 	// Filtering in parameter select to display only parameters no added
-	// 	this.parameters = this.parameters.filter(i => i.id !== parameters[0].id);
-	// }
-
-	// // Delete a parameterTested to the direction tested and initialize the parameter select
-	// deleteParameterTested(directionTested: DirectionTested, parameterTested: ParameterTested): void {
-	// 	if (!parameterTested) { return; }
-		
-	// 	// Remove from parameterTested list of DirectionTested
-	// 	directionTested.parametersTested = directionTested.parametersTested.filter(pt => pt.parameter.id !== parameterTested.parameter.id);
-				
-	// 	// Filtering in parameter select to display only parameters no added
-	// 	this.parameters.push(parameterTested.parameter);
-	// }
-
-	// // Go to the next direction tested
-	// goNextDirection(): void {
-	// 	// this.testService.getParameters().then(parameters => this.parameters = parameters);
-
-	// 	// Save done variable to true for the current direction tested
-	// 	this.test.directionsTested[this.currentDirection-1].done = true;
-
-	// 	this.currentDirection++;
-
-	// 	this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
-	// }
-
-	// // Go back to the last direction tested
-	// goBackDirection(): void {
-	// 	this.currentDirection--;
-	// 	// this.testService.getParameters().then(parameters => this.parameters = parameters);
-
-	// 	// Change done variable to false for the last direction tested
-	// 	this.test.directionsTested[this.currentDirection-1].done = false;
-
-	// 	this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
-	// }
-
-	// isCurrentDirection(direcTested: DirectionTested): boolean {
-	// 	return direcTested === this.test.directionsTested[this.currentDirection-1];
-	// }
-
 
 }
 

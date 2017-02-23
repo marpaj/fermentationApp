@@ -43,7 +43,7 @@ import { TestService }					from './tests/test.service';
 		TestDetailComponent,
 		BestTestComponent,
 		IngredientTestComponent,
-		DirectionTestComponent
+		DirectionTestComponent,
 	],
 	providers: [ RecipeService, IngredientService, DirectionService, TestService ],
 	bootstrap: [ AppComponent ]
