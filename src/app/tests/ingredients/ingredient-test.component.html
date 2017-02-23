@@ -1,0 +1,10 @@
+<ul class="ingredients">
+    <li *ngFor="let ingrTested of test.ingredientsTested">
+        <span class="badge">
+            {{ingrTested.ingredient.name}}
+            <input [(ngModel)]="ingrTested.amount" placeholder="amount" required/>
+            and units
+            <input [(ngModel)]="ingrTested.units" placeholder="units" required/>
+        </span>
+    </li>
+</ul>

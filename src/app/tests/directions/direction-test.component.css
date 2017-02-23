@@ -1,8 +1,4 @@
-textarea {
-	margin: 0 0 .5em 2em;
-}
-
-/*.directions {
+.directions {
 	margin: 0 0 0 2em;
 	list-style-type: none;
 	padding: 0;
@@ -35,6 +31,10 @@ textarea {
 	width: 19em;
 	margin: .5em;
 }
+/*.directions button {
+	background-color: gray !important;
+	color:white;
+}*/
 
 .parameters {
 	margin: 0 0 0 2em;
@@ -61,35 +61,4 @@ textarea {
 	background-color: gray !important;
 	color:white;
 	padding: 4px 9px;
-}*/
-
-/*.ingredients {
-	margin: 0 0 0 2em;
-	list-style-type: none;
-	padding: 0;
-}
-.ingredients input {
-	height: 1.5em;
-	font-size: .8em;
-	padding-left: .4em;
-	margin: .5em 0;
-	width: 5em;
-}
-.ingredients li {
-    position: relative;
-    left: 0;
-    margin: .5em;
-}
-.ingredients .badge {
-	display: inline-block;
-	color: white;
-	padding: .3em;
-	vertical-align: middle;
-	background-color: #607D8B;
-	line-height: 1em;
-	height: 2em;
-	border-radius: 4px 4px 4px 4px;
-}*/
-.close {
-	color: #B22222;
 }

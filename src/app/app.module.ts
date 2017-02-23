@@ -21,6 +21,8 @@ import { DirectionService }				from './recipes/directions/direction.service';
 import { TestsComponent }   			from './tests/tests.component';
 import { TestDetailComponent }			from './tests/test-detail.component';
 import { BestTestComponent }			from './tests/best-test.component';
+import { IngredientTestComponent }		from './tests/ingredients/ingredient-test.component';
+import { DirectionTestComponent }		from './tests/directions/direction-test.component';
 import { TestService }					from './tests/test.service';
 
 @NgModule({
@@ -40,6 +42,8 @@ import { TestService }					from './tests/test.service';
 		TestsComponent,
 		TestDetailComponent,
 		BestTestComponent,
+		IngredientTestComponent,
+		DirectionTestComponent
 	],
 	providers: [ RecipeService, IngredientService, DirectionService, TestService ],
 	bootstrap: [ AppComponent ]

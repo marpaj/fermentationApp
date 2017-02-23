@@ -5,7 +5,7 @@ import { Location }             	from '@angular/common';
 import { Recipe } 				from '../recipes/recipe';
 import { Ingredient } 			from '../recipes/ingredients/ingredient';
 import { Direction }			from '../recipes/directions/direction';
-import { Test, Parameter, ParameterTested, IngredientTested, DirectionTested } from './test';
+import { Test, IngredientTested, DirectionTested } from './test';
 
 import { TestService }			from './test.service';
 import { IngredientService }	from '../recipes/ingredients/ingredient.service';
@@ -25,11 +25,11 @@ export class TestDetailComponent implements OnInit {
 	
 	idRecipe: number;
 	
-	parameters: Parameter[];
+	// parameters: Parameter[];
 
 	errorMessages: string[];
 
-	currentDirection: number;
+	// currentDirection: number;
 
 	constructor(
 		private testService: TestService,
@@ -41,7 +41,7 @@ export class TestDetailComponent implements OnInit {
 
 	ngOnInit(): void {
 		// Initialize current direction Tested to 1
-		this.currentDirection = 1;
+		// this.currentDirection = 1;
 
 		this.errorMessages = [];
 
@@ -79,38 +79,33 @@ export class TestDetailComponent implements OnInit {
 					}
 				});
 
-			// Initialize parameter list on directions tested selection
-			this.initializeParameters(null);
-			// this.testService.getParameters().then(parameters => this.parameters = parameters);
+			// // Initialize parameter list on directions tested selection
+			// this.initializeParameters(null);
 
 		// When there is not idRecipe, there will be a idTest
 		} else {
 			this.testService.getTest(idTest).then(test => this.test = test);
-			this.testService.getCurrentDirection(idTest).then(currentDt => {
-				this.currentDirection = currentDt.direction.order;
+			// this.testService.getCurrentDirection(idTest).then(currentDt => {
+			// 	this.currentDirection = currentDt.direction.order;
 				
-				this.initializeParameters(currentDt);
-				// Filtering in parameter select to display only parameters no added
-				// for (let parameterTested of currentDt.parametersTested) {
-				// 	this.parameters = this.parameters.filter(i => i.id !== parameterTested.parameter.id);
-				// }
-			});
+			// 	this.initializeParameters(currentDt);
+			// });
 		}
 	}
 
-	// Initialize parameter select for the current direction tested
-	private initializeParameters(directionTested: DirectionTested): void {
-		this.testService.getParameters().then(parameters => {
-			this.parameters = parameters;
+	// // Initialize parameter select for the current direction tested
+	// private initializeParameters(directionTested: DirectionTested): void {
+	// 	this.testService.getParameters().then(parameters => {
+	// 		this.parameters = parameters;
 
-			// Filtering parameter select to display only parameters no added
-			if (directionTested) {
-				for (let parameterTested of directionTested.parametersTested) {
-					this.parameters = this.parameters.filter(i => i.id !== parameterTested.parameter.id);
-				}
-			}
-		});
-	}
+	// 		// Filtering parameter select to display only parameters no added
+	// 		if (directionTested) {
+	// 			for (let parameterTested of directionTested.parametersTested) {
+	// 				this.parameters = this.parameters.filter(i => i.id !== parameterTested.parameter.id);
+	// 			}
+	// 		}
+	// 	});
+	// }
 
 	// Go back to the last page
 	goBack(): void {
@@ -146,11 +141,11 @@ export class TestDetailComponent implements OnInit {
 			}
 		}
 
-		// Directions tested are required
-		if (this.currentDirection < this.test.directionsTested.length) {
-			this.errorMessages.push('Every directions must be done.');
-			isValid = false;
-		}
+		// // Directions tested are required
+		// if (this.currentDirection < this.test.directionsTested.length) {
+		// 	this.errorMessages.push('Every directions must be done.');
+		// 	isValid = false;
+		// }
 
 		return isValid;
 	}
@@ -168,58 +163,58 @@ export class TestDetailComponent implements OnInit {
 		this.testService.delete(this.test.id).then(() => this.goBack());
 	}
 	
-	// Add a parameterTested to the direction tested and initialize the parameter select
-	addParameterTested(directionTested: DirectionTested, idParameter: number, value: string): void {
-		if (!idParameter) { return; }
+	// // Add a parameterTested to the direction tested and initialize the parameter select
+	// addParameterTested(directionTested: DirectionTested, idParameter: number, value: string): void {
+	// 	if (!idParameter) { return; }
 		
-		// Get the parameter selected (Filter method return an array)
-		let parameters = <Parameter[]>this.parameters.filter(i => i.id == idParameter);
+	// 	// Get the parameter selected (Filter method return an array)
+	// 	let parameters = <Parameter[]>this.parameters.filter(i => i.id == idParameter);
 		
-		// Add new parameter tested to the current direction tested
-		let parameterTested = new ParameterTested(parameters[0], value);
-		directionTested.parametersTested.push(parameterTested);
+	// 	// Add new parameter tested to the current direction tested
+	// 	let parameterTested = new ParameterTested(parameters[0], value);
+	// 	directionTested.parametersTested.push(parameterTested);
 				
-		// Filtering in parameter select to display only parameters no added
-		this.parameters = this.parameters.filter(i => i.id !== parameters[0].id);
-	}
+	// 	// Filtering in parameter select to display only parameters no added
+	// 	this.parameters = this.parameters.filter(i => i.id !== parameters[0].id);
+	// }
 
-	// Delete a parameterTested to the direction tested and initialize the parameter select
-	deleteParameterTested(directionTested: DirectionTested, parameterTested: ParameterTested): void {
-		if (!parameterTested) { return; }
+	// // Delete a parameterTested to the direction tested and initialize the parameter select
+	// deleteParameterTested(directionTested: DirectionTested, parameterTested: ParameterTested): void {
+	// 	if (!parameterTested) { return; }
 		
-		// Remove from parameterTested list of DirectionTested
-		directionTested.parametersTested = directionTested.parametersTested.filter(pt => pt.parameter.id !== parameterTested.parameter.id);
+	// 	// Remove from parameterTested list of DirectionTested
+	// 	directionTested.parametersTested = directionTested.parametersTested.filter(pt => pt.parameter.id !== parameterTested.parameter.id);
 				
-		// Filtering in parameter select to display only parameters no added
-		this.parameters.push(parameterTested.parameter);
-	}
+	// 	// Filtering in parameter select to display only parameters no added
+	// 	this.parameters.push(parameterTested.parameter);
+	// }
 
-	// Go to the next direction tested
-	goNextDirection(): void {
-		// this.testService.getParameters().then(parameters => this.parameters = parameters);
+	// // Go to the next direction tested
+	// goNextDirection(): void {
+	// 	// this.testService.getParameters().then(parameters => this.parameters = parameters);
 
-		// Save done variable to true for the current direction tested
-		this.test.directionsTested[this.currentDirection-1].done = true;
+	// 	// Save done variable to true for the current direction tested
+	// 	this.test.directionsTested[this.currentDirection-1].done = true;
 
-		this.currentDirection++;
+	// 	this.currentDirection++;
 
-		this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
-	}
+	// 	this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
+	// }
 
-	// Go back to the last direction tested
-	goBackDirection(): void {
-		this.currentDirection--;
-		// this.testService.getParameters().then(parameters => this.parameters = parameters);
+	// // Go back to the last direction tested
+	// goBackDirection(): void {
+	// 	this.currentDirection--;
+	// 	// this.testService.getParameters().then(parameters => this.parameters = parameters);
 
-		// Change done variable to false for the last direction tested
-		this.test.directionsTested[this.currentDirection-1].done = false;
+	// 	// Change done variable to false for the last direction tested
+	// 	this.test.directionsTested[this.currentDirection-1].done = false;
 
-		this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
-	}
+	// 	this.initializeParameters(this.test.directionsTested[this.currentDirection-1]);
+	// }
 
-	isCurrentDirection(direcTested: DirectionTested): boolean {
-		return direcTested === this.test.directionsTested[this.currentDirection-1];
-	}
+	// isCurrentDirection(direcTested: DirectionTested): boolean {
+	// 	return direcTested === this.test.directionsTested[this.currentDirection-1];
+	// }
 
 
 }
