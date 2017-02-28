@@ -104,14 +104,14 @@ export class TestDetailComponent implements OnInit {
 			isValid = false;
 		}
 
-		// Ingredients tested are required
-		for (let it of test.ingredientsTested) {
-			if (!it.amount || !it.units) {
-				this.errorMessages.push('Every amount of ingredients are required.');
-				isValid = false;
-				break;
-			}
-		}
+		// // Ingredients tested are required
+		// for (let it of test.ingredientsTested) {
+		// 	if (!it.amount || !it.units) {
+		// 		this.errorMessages.push('Every amount of ingredients are required.');
+		// 		isValid = false;
+		// 		break;
+		// 	}
+		// }
 
 		// // Directions tested are required
 		// if (this.currentDirection < this.test.directionsTested.length) {

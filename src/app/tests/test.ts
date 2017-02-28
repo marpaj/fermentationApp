@@ -28,13 +28,10 @@ export class Test {
 
 export class IngredientTested {
 	ingredient: Ingredient;
-	amount: number;
-	units: string;
-	brand: string;
-	type: string;
+	parametersTested: ParameterTested[];
 
 	constructor() {
-		this.amount = 0;
+		this.parametersTested = [];
 	}
 }
 

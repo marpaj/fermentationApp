@@ -12,8 +12,10 @@ import { Test, IngredientTested } from '../test';
 export class IngredientTestComponent implements OnInit {
 	@Input()
 	test: Test;
+
+	selectedIngredient: IngredientTested;
 	
-	private _status = 'reading';
+	// private _status = 'reading';
 
 	// ingredients: Ingredient[];
 
@@ -42,6 +44,28 @@ export class IngredientTestComponent implements OnInit {
 	// constructor(private ingredientService: IngredientService) {}
 	
 	ngOnInit(): void {
+	}
+
+	edit(ingredientTested: IngredientTested) {
+		this.selectedIngredient = ingredientTested;
+	}
+
+	duplicate(ingredientTested: IngredientTested) {
+		let newIT: IngredientTested = new IngredientTested();
+		newIT.ingredient = ingredientTested.ingredient;
+		
+		for (let )
+
+		this.test.ingredientsTested.
+
+	}
+
+	addParameter() {
+
+	}
+
+	deleteParameter() {
+
 	}
 	
 	// It receives a number parameter because select does not return the whole object

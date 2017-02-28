@@ -1,5 +1,6 @@
 <ul class="ingredients">
     <li *ngFor="let ingrTested of test.ingredientsTested">
+
         <span class="badge">
             {{ingrTested.ingredient.name}}
             <input [(ngModel)]="ingrTested.amount" placeholder="amount" required/>
@@ -7,4 +8,35 @@
             <input [(ngModel)]="ingrTested.units" placeholder="units" required/>
         </span>
     </li>
+
+
+    <li *ngFor="let ingrTested of test.ingredientsTested">
+        <span class="text">{{ingrTested.ingredient.name}}</span>
+
+        <!--<div *ngIf="isCurrentDirection(direcTested)">-->
+            <select #parameterSelect id="select" name="selection">
+                <option value="" disabled selected>Parameter</option>
+                <option *ngFor="let parameter of parameters" 
+                    [value]="parameter.id">{{parameter.name}}</option>
+            </select>
+            <input #parameterValue placeholder="value" />
+            <button (click)="addParameterTested(direcTested, 
+                parameterSelect.value, parameterValue.value); parameterSelect.value=''; parameterValue.value=''">Add</button>
+        <!--</div>-->
+        <ul class="parameters">
+            <li *ngFor="let parameterTested of direcTested.parametersTested"
+                    [class.current]="isCurrentDirection(directested)">
+                <span>{{parameterTested.parameter.name +': '}}</span>{{parameterTested.value}}
+                <button class="delete" (click)="deleteParameterTested(direcTested, parameterTested); 
+                    $event.stopPropagation()">x</button>
+            </li>
+        </ul>
+        <div *ngIf="isCurrentDirection(direcTested)">
+            <button *ngIf="currentDirection > 1" (click)="goBackDirection()">Back</button>
+            <button *ngIf="test.directionsTested.length > currentDirection" (click)="goNextDirection()">Next</button>
+        </div>
+    </li>
+
+
+
 </ul>
