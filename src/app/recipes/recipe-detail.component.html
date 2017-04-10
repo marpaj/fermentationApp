@@ -40,9 +40,9 @@
 	<button (click)="edit()" *ngIf="isEditButtonEnabled()" disabled="{{activeTest}}">Edit</button>
 	<button (click)="cancel()" *ngIf="isCancelButtonEnabled()">Cancel</button>
 	<button (click)="save()" *ngIf="isSaveButtonEnabled()">Save</button>
-	<button [routerLink]="['/test', {idRecipe: recipe.id}]" *ngIf="isNewTestButtonEnabled()">New Test</button>
-	<button [routerLink]="['/tests', recipe.id]" *ngIf="isTestsButtonEnabled()">Tests</button>
-	<button [routerLink]="['/test', {idTest: activeTest.id}]" *ngIf="isActiveTestButtonEnabled()" class="active">
+	<button (click)="gotoNewTest(recipe)" *ngIf="isNewTestButtonEnabled()">New Test</button>
+	<button (click)="gotoTest(recipe.id)" *ngIf="isTestsButtonEnabled()">Tests</button>
+	<button (click)="gotoTest(None)" *ngIf="isActiveTestButtonEnabled()" class="active">
 		Active Test
 	</button>
 </div>

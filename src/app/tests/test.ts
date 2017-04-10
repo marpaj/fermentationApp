@@ -28,20 +28,20 @@ export class Test {
 
 export class IngredientTested {
 	ingredient: Ingredient;
-	parametersTested: ParameterTested[];
+	parametersIngredient: ParameterTested[];
 
 	constructor() {
-		this.parametersTested = [];
+		this.parametersIngredient = [];
 	}
 }
 
 export class DirectionTested {
 	direction: Direction;
-	parametersTested: ParameterTested[];
+	parametersDirection: ParameterTested[];
 	done: boolean;
 	
 	constructor() {
-		this.parametersTested = [];
+		this.parametersDirection = [];
 		this.done = false;
 	}
 }

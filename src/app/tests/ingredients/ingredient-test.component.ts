@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Test, IngredientTested } from '../test';
+import { Test, IngredientTested, Parameter, ParameterTested } from '../test';
+import { TestService } from "app/tests/test.service";
 
 @Component({
   moduleId: module.id,
@@ -13,37 +14,22 @@ export class IngredientTestComponent implements OnInit {
 	@Input()
 	test: Test;
 
+	parameters: Parameter[];
+
 	selectedIngredient: IngredientTested;
-	
-	// private _status = 'reading';
 
-	// ingredients: Ingredient[];
+	constructor(private testService: TestService) {}
 
-	// @Input()
-	// set status(status: string) {
-	// 	if (status!='reading') {
-	// 		this.ingredientService.getIngredients()
-	// 			.then(ingredients => {
-	// 				this.ingredients = ingredients;
-	// 				// Filtering ingredients already added
-	// 				if (this.recipe.ingredients) {
-	// 					for (let ri of this.recipe.ingredients) {
-	// 						this.ingredients = this.ingredients.filter(i => i.id !== ri.id);
-	// 					}
-	// 				}
-	// 			});
-	// 	}
-	// 	// Save the new status from the parent component
-	// 	this._status = status;
-	// }
-	
-	// get status(): string {
-	// 	return this._status;
-	// }
-
-	// constructor(private ingredientService: IngredientService) {}
 	
 	ngOnInit(): void {
+		this.initializeParameters();
+	}
+
+	// Initialize parameter select for the current direction tested
+	private initializeParameters(): void {
+		this.testService.getParameters().then(parameters => {
+			this.parameters = parameters;
+		});
 	}
 
 	edit(ingredientTested: IngredientTested) {
@@ -54,18 +40,27 @@ export class IngredientTestComponent implements OnInit {
 		let newIT: IngredientTested = new IngredientTested();
 		newIT.ingredient = ingredientTested.ingredient;
 		
-		for (let )
-
-		this.test.ingredientsTested.
-
 	}
 
-	addParameter() {
-
+	// Add a parameterTested to the ingredient tested list
+	addParameterTested(ingredientTested: IngredientTested, idParameter: number, value: string): void {
+		if (!idParameter || !value) { return; }
+		
+		// Get the parameter selected (Note: filter method return an array)
+		let parameters = <Parameter[]>this.parameters.filter(i => i.id == idParameter);
+		
+		// Add new parameter tested to the current direction tested
+		let parameterTested = new ParameterTested(parameters[0], value);
+		ingredientTested.parametersIngredient.push(parameterTested);
 	}
 
-	deleteParameter() {
-
+	// Delete a parameterTested to the ingredient tested list
+	deleteParameterTested(ingredientTested: IngredientTested, parameterTested: ParameterTested): void {
+		if (!parameterTested) { return; }
+		
+		// Remove from parameterTested list of ingredientTested
+		ingredientTested.parametersIngredient = 
+			ingredientTested.parametersIngredient.filter(pt => pt.parameter.id !== parameterTested.parameter.id);
 	}
 	
 	// It receives a number parameter because select does not return the whole object

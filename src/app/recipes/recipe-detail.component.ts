@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Params }   from '@angular/router';
+import { ActivatedRoute, Params, Router }   from '@angular/router';
 import { Location }                 from '@angular/common';
 import { BrowserModule } 			from '@angular/platform-browser';
 
@@ -33,6 +33,7 @@ export class RecipeDetailComponent implements OnInit {
 		private recipeService: RecipeService,
 		private testService: TestService,
 		private route: ActivatedRoute,
+		private router: Router,
 		private location: Location
 	) {}
 
@@ -101,6 +102,22 @@ export class RecipeDetailComponent implements OnInit {
 				this.recipeService.create(this.recipe).then(() => this.status='reading');//this.goBack());
 			}
 		}
+	}
+
+	gotoNewTest(recipe: Recipe): void {
+		let link = ['/test', {idRecipe: recipe.id}];
+		this.router.navigate(link);
+	}
+
+	gotoTest(recipe: Recipe): void {
+		let link;
+		if (recipe) {
+			link = ['/tests', recipe.id];
+		} else {
+			console.log('test: ' +this.activeTest.id);
+			link = ['/test', {idTest: this.activeTest.id}];
+		}
+		this.router.navigate(link);
 	}
 
 	isValidRecipe(): boolean {

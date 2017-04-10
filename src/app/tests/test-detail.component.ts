@@ -1,4 +1,4 @@
-import { Component, OnInit } 		from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params }	from '@angular/router';
 import { Location }             	from '@angular/common';
 
@@ -10,6 +10,7 @@ import { Test, IngredientTested, DirectionTested } from './test';
 import { TestService }			from './test.service';
 import { IngredientService }	from '../recipes/ingredients/ingredient.service';
 import { DirectionService }		from '../recipes/directions/direction.service';
+import { DirectionTestComponent } from './directions/direction-test.component';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -26,6 +27,9 @@ export class TestDetailComponent implements OnInit {
 	idRecipe: number;
 
 	errorMessages: string[];
+
+	/*@ViewChild(DirectionTestComponent)
+	private directionComponent: DirectionTestComponent;*/
 
 	constructor(
 		private testService: TestService,
@@ -50,19 +54,17 @@ export class TestDetailComponent implements OnInit {
 			this.test = new Test();
 
 			// Ingredient list
-			this.route.params
-				this.ingredientService.getIngredientsByRecipe(this.idRecipe)
-				.then(ingredients => {
-					for (let i of ingredients) {
-						let it = new IngredientTested();
-						it.ingredient = i;
-						this.test.ingredientsTested.push(it);
-					}
-				});
+			this.ingredientService.getIngredientsByRecipe(this.idRecipe)
+			.then(ingredients => {
+				for (let i of ingredients) {
+					let it = new IngredientTested();
+					it.ingredient = i;
+					this.test.ingredientsTested.push(it);
+				}
+			});
 			
 			// Direction list
-			this.route.params
-				this.directionService.getDirectionsByRecipe(this.idRecipe)
+			/*this.directionService.getDirectionsByRecipe(this.idRecipe)
 				.then(directions => {
 					for (let d of directions) {
 						if (!d.deleted) {
@@ -71,7 +73,9 @@ export class TestDetailComponent implements OnInit {
 							this.test.directionsTested.push(dt);
 						}
 					}
-				});
+					console.log('Parent ngInit: En test hay '+this.test.directionsTested.length +' directions');
+					this.directionComponent.initialize(this.test);
+			});*/
 
 		// When there is not idRecipe, there will be a idTest
 		} else {

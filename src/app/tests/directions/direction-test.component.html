@@ -16,10 +16,11 @@
                     parameterSelect.value, parameterValue.value); parameterSelect.value=''; parameterValue.value=''">Add</button>
             </div>
             <ul class="parameters">
-                <li *ngFor="let parameterTested of direcTested.parametersTested"
+                <li *ngFor="let parameterDirection of direcTested.parametersDirection"
                         [class.current]="isCurrentDirection(directested)">
-                    <span>{{parameterTested.parameter.name +': '}}</span>{{parameterTested.value}}
-                    <button class="delete" (click)="deleteParameterTested(direcTested, parameterTested); 
+                    <span>{{parameterDirection.parameter.name +': '}}</span>
+                    {{parameterDirection.value}}
+                    <button class="delete" (click)="deleteParameterTested(direcTested, parameterDirection); 
                         $event.stopPropagation()">x</button>
                 </li>
             </ul>

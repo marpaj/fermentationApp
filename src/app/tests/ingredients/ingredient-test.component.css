@@ -2,26 +2,52 @@
 	margin: 0 0 0 2em;
 	list-style-type: none;
 	padding: 0;
+	/*width: 30em;*/
 }
 .ingredients input {
 	height: 1.5em;
 	font-size: .8em;
 	padding-left: .4em;
 	margin: .5em 0;
-	width: 5em;
+	width: 10em;
 }
 .ingredients li {
-    position: relative;
-    left: 0;
-    margin: .5em;
+	position: relative;
+	left: 0;
+	background-color: #e0d2e0;
+	margin: .5em;
+	padding: .4em;
+	border-radius: 4px;
 }
-.ingredients .badge {
-	display: inline-block;
+/*.ingredients .badge {
 	color: white;
 	padding: .3em;
-	vertical-align: middle;
 	background-color: #607D8B;
 	line-height: 1em;
 	height: 2em;
 	border-radius: 4px 4px 4px 4px;
+}*/
+
+.parameters {
+	/*margin: 0 0 0 2em;*/
+	list-style-type: none;
+	padding: 0;
+	font-size: .9em;
+}
+.parameters li {
+	display: inline-block;
+	position: relative;
+	left: 0;
+	background-color: #96abb6;
+	margin: .2em;
+	padding: .4em;
+	border-radius: 4px;
+	color: white;
+}
+.parameters button.delete {
+	float:right;
+	margin: -.19em 0 0 .4em;
+	background-color: gray !important;
+	color:white;
+	padding: 2px 4px;
 }

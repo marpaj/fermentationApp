@@ -2,7 +2,7 @@
 	margin: 0 0 0 2em;
 	list-style-type: none;
 	padding: 0;
-	width: 25em;
+	/*width: 25em;*/
 }
 .directions li {
 	position: relative;
@@ -13,7 +13,7 @@
 	border-radius: 4px;
 }
 .directions li.current {
-	background-color: #c0a5c0 !important;
+	background-color: #e0d2e0 !important;
 	color: white;
 }
 .directions .badge {
@@ -28,8 +28,15 @@
 .directions .text {
 	position: relative;
 	display: inline-block;
-	width: 19em;
+	/*width: 19em;*/
 	margin: .5em;
+}
+.directions input {
+	height: 1.5em;
+	font-size: .8em;
+	padding-left: .4em;
+	margin: .5em 0;
+	width: 10em;
 }
 /*.directions button {
 	background-color: gray !important;
